@@ -218,23 +218,26 @@ export function Testimonials() {
         </div>
 
         {/* Marquee Container */}
-        <div className="relative w-full overflow-hidden space-y-8">
-          {/* Left/Right Fade Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-48 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-48 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none" />
+        <div className="relative w-full overflow-hidden">
+          {/* Left/Right Fade Masks - Full coverage with smooth gradient */}
+          <div className="absolute left-0 top-0 h-full w-16 md:w-40 bg-gradient-to-r from-background via-background/50 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-16 md:w-40 bg-gradient-to-l from-background via-background/50 to-transparent z-10 pointer-events-none" />
 
-          {/* Row 1 - Left */}
-          <div className="flex w-max animate-loop-scroll hover:paused gap-6 pl-6">
-            {[...row1, ...row1, ...row1].map((t, i) => (
-              <TestimonialCard key={`row1-${i}`} data={t} />
-            ))}
-          </div>
+          {/* Scrolling content with vertical spacing */}
+          <div className="space-y-8">
+            {/* Row 1 - Left */}
+            <div className="flex w-max animate-loop-scroll hover:paused gap-6 pl-6">
+              {[...row1, ...row1, ...row1].map((t, i) => (
+                <TestimonialCard key={`row1-${i}`} data={t} />
+              ))}
+            </div>
 
-          {/* Row 2 - Right (Reverse) */}
-          <div className="flex w-max animate-loop-scroll-reverse hover:paused gap-6 pl-6">
-            {[...row2, ...row2, ...row2].map((t, i) => (
-              <TestimonialCard key={`row2-${i}`} data={t} />
-            ))}
+            {/* Row 2 - Right (Reverse) */}
+            <div className="flex w-max animate-loop-scroll-reverse hover:paused gap-6 pl-6">
+              {[...row2, ...row2, ...row2].map((t, i) => (
+                <TestimonialCard key={`row2-${i}`} data={t} />
+              ))}
+            </div>
           </div>
         </div>
       </Container>

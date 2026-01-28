@@ -30,22 +30,20 @@ export function Pricing() {
 
         {/* Toggle Switch */}
         <div className="flex flex-col items-center gap-8 mb-12">
-          <div className="bg-muted/80 p-1 rounded-full relative flex items-center h-10 w-fit border border-border/80 shadow-sm">
-            <motion.div
-              className="absolute rounded-full h-[calc(100%-8px)] top-1 bottom-1 bg-gradient-to-r from-blue-600 via-primary to-purple-600 shadow-md shadow-primary/20 ring-1 ring-white/25 animate-gradient-x motion-reduce:animate-none"
-              layoutId="activeTab"
-              initial={false}
-              animate={{
-                width: "48%",
-                x: billingCycle === "pay-as-you-go" ? 4 : "104%",
-                left: 0,
-              }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          <div className="bg-muted/80 p-1 rounded-full relative flex items-center h-9 sm:h-10 w-fit border border-border/80 shadow-sm">
+            {/* Animated slider - uses CSS for width, JS for position */}
+            <div
+              className={cn(
+                "absolute rounded-full h-[calc(100%-8px)] top-1 bottom-1 bg-gradient-to-r from-blue-600 via-primary to-purple-600 shadow-md shadow-primary/20 ring-1 ring-white/25 animate-gradient-x motion-reduce:animate-none",
+                "w-[105px] sm:w-32 md:w-40",
+                "transition-transform duration-300 ease-out",
+                billingCycle === "pay-as-you-go" ? "translate-x-0" : "translate-x-[105px] sm:translate-x-32 md:translate-x-40"
+              )}
             />
             <button
               onClick={() => setBillingCycle("pay-as-you-go")}
               className={cn(
-                "relative z-10 px-6 text-sm font-medium transition-colors w-32 md:w-40 text-center",
+                "relative z-10 px-2 sm:px-6 text-[11px] sm:text-sm font-medium transition-colors w-[105px] sm:w-32 md:w-40 text-center whitespace-nowrap",
                 billingCycle === "pay-as-you-go" ? "text-white" : "text-muted-foreground"
               )}
             >
@@ -54,7 +52,7 @@ export function Pricing() {
             <button
               onClick={() => setBillingCycle("monthly")}
               className={cn(
-                "relative z-10 px-6 text-sm font-medium transition-colors w-32 md:w-40 text-center",
+                "relative z-10 px-2 sm:px-6 text-[11px] sm:text-sm font-medium transition-colors w-[105px] sm:w-32 md:w-40 text-center whitespace-nowrap",
                 billingCycle === "monthly" ? "text-white" : "text-muted-foreground"
               )}
             >

@@ -79,8 +79,8 @@ export function MainHeader() {
   return (
     <>
       <Header /> {/* Desktop Dynamic Island */}
-      {/* Mobile Header (Standard Fixed) */}
-      <header className="md:hidden fixed top-0 left-0 right-0 h-16 bg-background/90 backdrop-blur-md border-b border-border/80 shadow-sm z-50 flex items-center px-4 justify-between">
+      {/* Mobile Header (Modern Dynamic Island Style) */}
+      <header className="md:hidden fixed top-4 left-4 right-4 h-14 bg-white/95 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/15 shadow-lg ring-1 ring-black/5 dark:ring-white/10 z-50 flex items-center px-5 justify-between rounded-2xl">
         <Link
           href="/"
           onClick={(e) => {
