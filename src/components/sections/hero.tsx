@@ -10,7 +10,18 @@ import { PlatformBadge } from "@/components/ui/platform-badge";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { GradientText, GlowEffect } from "@/components/ui/gradient-text";
 import { scrollToSection } from "@/lib/utils";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+
+const question = "How should we approach this?";
+  
+const fullAnswer = `A: Break it into smaller steps. Start with the easy parts first. Test as we go. Adjust if something doesn't work.
+
+• Split the problem
+• Start simple
+• Check progress
+• Fix what's not working`;
+
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 function MacAppPreview() {
   const [showApp, setShowApp] = useState(false);
@@ -18,18 +29,19 @@ function MacAppPreview() {
   const [transcriptionText, setTranscriptionText] = useState("");
   const [answerContent, setAnswerContent] = useState("");
   const [isSpeaking, setIsSpeaking] = useState(false);
-
-  const question = "What's your greatest strength?";
   
-  const fullAnswer = `A: Problem-solving and adaptability. I excel at breaking down complex challenges into actionable steps.
-
-• Quick learner with new technologies
-• Calm under pressure
-• Delivered projects 20% faster`;
-
-  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  // Ref to track the current animation run ID for cancellation
+  const demoRunId = useRef(0);
 
   const runDemo = useCallback(async () => {
+    // Generate a unique ID for this execution
+    const currentRunId = Date.now();
+    demoRunId.current = currentRunId;
+
+    // Helper to check if this run is still valid
+    const isActive = () => demoRunId.current === currentRunId;
+
+    // Reset state
     setShowApp(false);
     setPhase(0);
     setTranscriptionText("");
@@ -37,34 +49,46 @@ function MacAppPreview() {
     setIsSpeaking(false);
 
     await delay(2000);
+    if (!isActive()) return;
 
     setShowApp(true);
     await delay(800);
+    if (!isActive()) return;
 
     setIsSpeaking(true);
     await delay(1200);
+    if (!isActive()) return;
 
     setPhase(1);
     for (let i = 0; i <= question.length; i++) {
+      if (!isActive()) return;
       setTranscriptionText(question.slice(0, i));
       await delay(45);
     }
     setIsSpeaking(false);
     await delay(600);
+    if (!isActive()) return;
 
     setPhase(2);
     for (let i = 0; i <= fullAnswer.length; i++) {
+      if (!isActive()) return;
       setAnswerContent(fullAnswer.slice(0, i));
       await delay(12);
     }
 
     await delay(4000);
+    // Loop ends naturally
   }, []);
 
   useEffect(() => {
-    runDemo();
-    const interval = setInterval(runDemo, 22000);
-    return () => clearInterval(interval);
+    const timer = setTimeout(runDemo, 0); // Avoid synchronous setState in effect
+    const interval = setInterval(runDemo, 22000); // 22s cycle matches animation time approx
+    
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+      demoRunId.current = 0; // Cancel any active run on unmount
+    };
   }, [runDemo]);
 
   const renderAnswer = (text: string) => {
@@ -135,7 +159,7 @@ function MacAppPreview() {
               {/* Top Label - Interviewer */}
               <div className="absolute top-1.5 md:top-2 left-1.5 md:left-2 z-10">
                 <div className="bg-black/70 backdrop-blur-sm px-2 md:px-2.5 py-0.5 md:py-1 rounded text-[8px] md:text-[10px] text-white font-medium">
-                  <span className="text-emerald-400">●</span> Interviewer
+                  <span className="text-emerald-400">●</span> Meeting Organizer
                 </div>
               </div>
               
@@ -165,7 +189,7 @@ function MacAppPreview() {
                             }}
                             transition={{ 
                               repeat: Infinity, 
-                              duration: 0.4 + Math.random() * 0.2,
+                              duration: 0.4 + (i % 3) * 0.1, // Deterministic duration based on index
                               delay: i * 0.08,
                               ease: "easeInOut"
                             }}
@@ -354,13 +378,7 @@ function MacAppPreview() {
                         ) : (
                           <div>
                             {renderAnswer(answerContent)}
-                            {answerContent.length < fullAnswer.length && (
-                              <motion.span
-                                className="inline-block w-[2px] h-3 bg-violet-400 ml-0.5 align-middle"
-                                animate={{ opacity: [1, 0] }}
-                                transition={{ repeat: Infinity, duration: 0.4 }}
-                              />
-                            )}
+
                           </div>
                         )}
                       </div>
@@ -381,14 +399,10 @@ function MacAppPreview() {
 
                       {/* Modes */}
                       <div className="flex p-[2px] rounded-lg bg-black/20 border border-white/[0.04]">
-                        {['Analyze', 'AI Chat', 'Answer'].map((mode, i) => (
+                        {['Analyze', 'AI Chat', 'Answer'].map((mode) => (
                           <button 
                             key={mode}
-                            className={`h-4 md:h-5 px-1.5 md:px-2 rounded-md text-[7px] md:text-[8px] font-semibold transition-all ${
-                              i === 1 
-                                ? 'bg-white/10 text-white border border-white/[0.08]' 
-                                : 'text-white/50 hover:text-white/70'
-                            }`}
+                            className="h-4 md:h-5 px-2 md:px-2.5 rounded-md text-[8px] md:text-[9px] font-medium transition-all text-white/50 hover:text-white/80 hover:bg-white/5"
                           >
                             {mode}
                           </button>
@@ -418,11 +432,30 @@ function MacAppPreview() {
               { icon: 'M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z', label: 'Video' },
               { icon: 'M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z', label: 'Share' },
             ].map((btn) => (
-              <button key={btn.label} className="flex flex-col items-center gap-0.5 px-2 md:px-3 py-1 rounded hover:bg-white/10 transition-colors">
-                <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-white/80" fill="currentColor" viewBox="0 0 24 24">
-                  <path d={btn.icon}/>
-                </svg>
-                <span className="text-[7px] md:text-[8px] text-white/50 hidden md:block">{btn.label}</span>
+              <button 
+                key={btn.label} 
+                className={`group flex flex-col items-center gap-0.5 px-2 md:px-3 py-1 rounded transition-colors ${
+                  btn.label === 'Share' ? 'hover:bg-red-500/10' : 'hover:bg-white/10'
+                }`}
+              >
+                <div className="relative">
+                  <svg 
+                    className={`w-3.5 h-3.5 md:w-4 md:h-4 ${btn.label === 'Share' ? 'text-red-400' : 'text-white/80'}`} 
+                    fill="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path d={btn.icon}/>
+                  </svg>
+                  {btn.label === 'Share' && (
+                    <span className="absolute -top-0.5 -right-0.5 flex h-1.5 w-1.5 md:h-2 md:w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-full w-full bg-red-500"></span>
+                    </span>
+                  )}
+                </div>
+                <span className={`text-[7px] md:text-[8px] hidden md:block ${btn.label === 'Share' ? 'text-red-400 font-medium' : 'text-white/50'}`}>
+                  {btn.label === 'Share' ? 'Sharing' : btn.label}
+                </span>
               </button>
             ))}
             <button className="flex flex-col items-center gap-0.5 px-2.5 md:px-4 py-1 rounded bg-red-600 hover:bg-red-500 transition-colors ml-1">
@@ -497,7 +530,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Ace Every Interview with <GradientText>AI by Your Side</GradientText>
+          <span className="block">Ace Every Meeting with</span> <GradientText>AI by Your Side</GradientText>
         </motion.h1>
 
         <motion.p
@@ -506,8 +539,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Real-time transcription and instant answer suggestions. Your invisible AI copilot for
-          Meetings and Interviews.
+          Listens to every question. Gives you personalized answers. Your invisible AI copilot for your next meetings.
         </motion.p>
 
         <motion.div
@@ -535,7 +567,7 @@ export function Hero() {
               />
               <div className="relative flex items-center justify-center gap-2">
                 <Rocket className="w-4 h-4" />
-                Download App
+                Download Free
               </div>
             </Link>
           </Button>

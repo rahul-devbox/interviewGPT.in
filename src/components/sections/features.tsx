@@ -16,13 +16,10 @@ import {
   Globe,
   Zap,
   ShieldCheck,
-  Check,
-  CheckCircle2,
   Monitor,
   AppWindow,
   PanelTop,
   MousePointerClick,
-  EyeOff,
   GitBranch,
   Timer,
   Cpu,
@@ -251,7 +248,7 @@ export function Features() {
                   <div className="absolute -top-2.5 sm:-top-3 right-3 sm:right-4 bg-amber-100 dark:bg-amber-900/80 text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 px-1.5 sm:px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-500/20">
                     STAR Response
                   </div>
-                  &quot;Here's your answer based on your experience in STAR format...&quot;
+                  &quot;Here&apos;s your answer based on your experience in STAR format...&quot;
                 </motion.div>
               </div>
             </div>
@@ -326,8 +323,8 @@ export function Features() {
             {/* Three Context Types */}
             <div className="mt-auto pt-4 sm:pt-5 border-t border-border/70 space-y-2.5">
               {[
-                { icon: FileText, text: "Your Experience", desc: "PDF / DOCX" },
-                { icon: Target, text: "Job Target", desc: "Paste JD" },
+                { icon: FileText, text: "Your Experience", desc: "PDF" },
+                { icon: Target, text: "Target Role", desc: "Paste JD" },
                 { icon: SlidersHorizontal, text: "Custom Rules", desc: "Tone & Style" },
               ].map((item, i) => (
                 <motion.div
@@ -453,7 +450,7 @@ export function Features() {
                   <Code className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 tracking-tight">Technical Interview Copilot</h3>
+                  <h3 className="text-2xl font-bold mb-2 tracking-tight">Technical Copilot</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     Specialized support for DSA, system design, and coding rounds. Explains approaches, analyzes complexity, and catches edge cases in real-time.
                   </p>
@@ -462,7 +459,7 @@ export function Features() {
               
               {/* Mobile/Tablet: Text below icon */}
               <div className="lg:hidden">
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 tracking-tight">Technical Interview Copilot</h3>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 tracking-tight">Technical Copilot</h3>
                 <p className="text-sm sm:text-base text-muted-foreground mb-2 font-medium">
                   Built for technical rounds.
                 </p>

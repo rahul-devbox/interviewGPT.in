@@ -19,6 +19,7 @@ export function Logo({
             src="/AppIcon.png"
             alt="InterviewCopilot Logo"
             fill
+            sizes="32px"
             className="object-contain rounded-lg"
           />
         </div>

@@ -25,11 +25,14 @@ function DownloadPageContent() {
   const [activeTab, setActiveTab] = useState("windows");
 
   useEffect(() => {
-    if (platformParam === "mac") {
-      setActiveTab("mac");
-    } else if (platformParam === "windows") {
-      setActiveTab("windows");
-    }
+    const timer = setTimeout(() => {
+      if (platformParam === "mac") {
+        setActiveTab("mac");
+      } else if (platformParam === "windows") {
+        setActiveTab("windows");
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [platformParam]);
 
   return (

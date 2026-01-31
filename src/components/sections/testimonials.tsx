@@ -165,7 +165,7 @@ const row2 = testimonials.slice(8, 15);
 
 function TestimonialCard({ data }: { data: (typeof testimonials)[0] }) {
   return (
-    <Card className="w-[78vw] max-w-[320px] md:max-w-[400px] shrink-0 h-[260px] bg-card transition-all border-border/80 hover:border-primary/25 hover:shadow-lg flex flex-col">
+    <Card className="w-[280px] md:w-[400px] shrink-0 h-auto min-h-[240px] md:min-h-[260px] bg-card transition-all border-border/80 hover:border-primary/25 hover:shadow-lg flex flex-col justify-between">
       <CardContent className="h-full flex flex-col p-6">
         {/* Rating */}
         <div className="flex mb-4">
@@ -219,21 +219,21 @@ export function Testimonials() {
 
         {/* Marquee Container */}
         <div className="relative w-full overflow-hidden">
-          {/* Left/Right Fade Masks - Full coverage with smooth gradient */}
-          <div className="absolute left-0 top-0 h-full w-16 md:w-40 bg-gradient-to-r from-background via-background/50 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 h-full w-16 md:w-40 bg-gradient-to-l from-background via-background/50 to-transparent z-10 pointer-events-none" />
+          {/* Left/Right Fade Masks - Adjusted for mobile */}
+          <div className="absolute left-0 top-0 h-full w-8 md:w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 h-full w-8 md:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none" />
 
           {/* Scrolling content with vertical spacing */}
           <div className="space-y-8">
             {/* Row 1 - Left */}
-            <div className="flex w-max animate-loop-scroll hover:paused gap-6 pl-6">
+            <div className="flex w-max animate-loop-scroll hover:paused gap-4 md:gap-6 pl-4 md:pl-6">
               {[...row1, ...row1, ...row1].map((t, i) => (
                 <TestimonialCard key={`row1-${i}`} data={t} />
               ))}
             </div>
 
             {/* Row 2 - Right (Reverse) */}
-            <div className="flex w-max animate-loop-scroll-reverse hover:paused gap-6 pl-6">
+            <div className="flex w-max animate-loop-scroll-reverse hover:paused gap-4 md:gap-6 pl-4 md:pl-6">
               {[...row2, ...row2, ...row2].map((t, i) => (
                 <TestimonialCard key={`row2-${i}`} data={t} />
               ))}

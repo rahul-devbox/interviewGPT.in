@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -60,9 +61,9 @@ export function Pricing() {
             </button>
           </div>
 
-          <div className="flex items-start md:items-center gap-3 text-sm font-medium text-amber-700 bg-amber-50 dark:bg-amber-900/20 px-5 py-3 rounded-lg border border-amber-200 dark:border-amber-900/50 max-w-2xl mx-auto text-left md:text-center shadow-sm">
-            <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 md:mt-0" />
-            <span className="leading-snug">
+          <div className="flex items-start md:items-center gap-2 md:gap-3 text-xs sm:text-sm font-medium text-amber-700 bg-amber-50 dark:bg-amber-900/20 px-3 sm:px-5 py-2.5 sm:py-3 rounded-lg border border-amber-200 dark:border-amber-900/50 max-w-2xl mx-auto text-left md:text-center shadow-sm">
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5 md:mt-0" />
+            <span className="leading-relaxed md:leading-snug">
               <strong>Session Logic:</strong> Minimum charge is 30 mins per session.{" "}
               <br className="hidden md:block" />
               If you exceed 30 mins, it auto-extends by another 30 mins.
@@ -114,7 +115,7 @@ export function Pricing() {
                     </CardContent>
                     <CardFooter>
                       <Button variant="outline" className="w-full" size="lg" asChild>
-                        <a href="/download">Try for Free</a>
+                        <Link href="/login?package=free-trial">Try for Free</Link>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -159,8 +160,8 @@ export function Pricing() {
                       </ul>
                     </CardContent>
                     <CardFooter>
-                      <Button className={standardButtonClasses} size="lg">
-                        Get Standard (1 Hour)
+                      <Button className={standardButtonClasses} size="lg" asChild>
+                        <Link href="/login?package=standard">Get Standard (1 Hour)</Link>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -227,7 +228,9 @@ export function Pricing() {
                             repeatDelay: 0.5,
                           }}
                         />
-                        <div className="relative z-10">Get Premium (2 Hours)</div>
+                        <div className="relative z-10">
+                          <Link href="/login?package=premium">Get Premium (2 Hours)</Link>
+                        </div>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -340,7 +343,9 @@ export function Pricing() {
                             repeatDelay: 0.5,
                           }}
                         />
-                        <div className="relative z-10">Get Monthly Access</div>
+                        <div className="relative z-10">
+                          <Link href="/login?package=monthly">Get Monthly Access</Link>
+                        </div>
                       </Button>
                     </CardFooter>
                   </Card>
