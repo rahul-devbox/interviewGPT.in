@@ -14,7 +14,7 @@ const testimonials = [
     company: "Now at Google",
     rating: 5.0,
     quote:
-      "Got my Google offer in 3 days. The STAR format suggestions were spot on. Never felt this confident in an interview before.",
+      "Got my Google offer in 3 days. The STAR format suggestions were spot on. Never felt this confident in a meeting before.",
     image: "https://randomuser.me/api/portraits/women/24.jpg",
   },
   // REVIEW 2
@@ -44,7 +44,7 @@ const testimonials = [
     company: "Now at Flipkart",
     rating: 5.0,
     quote:
-      "5 interviews in 2 weeks. Got 3 offers. The coding explanations helped me sound like a senior dev. Insane value.",
+      "5 meetings in 2 weeks. Got 3 offers. The coding explanations helped me sound like a senior dev. Insane value.",
     image: "https://randomuser.me/api/portraits/men/45.jpg",
   },
   // REVIEW 5
@@ -54,7 +54,7 @@ const testimonials = [
     company: "Now at Deloitte",
     rating: 5.0,
     quote:
-      "First interview ever. Was terrified. The personalized answers based on my resume got me into Deloitte as a fresher!",
+      "First meeting ever. Was terrified. The personalized answers based on my resume got me into Deloitte as a fresher!",
     image: "https://randomuser.me/api/portraits/women/68.jpg",
   },
   // REVIEW 6
@@ -74,7 +74,7 @@ const testimonials = [
     company: "Now at Swiggy",
     rating: 5.0,
     quote:
-      "Uploaded my portfolio and it understood my projects contextually. Design interviews finally feel manageable now.",
+      "Uploaded my portfolio and it understood my projects contextually. Design meetings finally feel manageable now.",
     image: "https://randomuser.me/api/portraits/women/12.jpg",
   },
   // REVIEW 8
@@ -94,7 +94,7 @@ const testimonials = [
     company: "Now at Zomato",
     rating: 4.5,
     quote:
-      "3 year career gap after baby. This helped me frame it positively. HR suggestions were perfect for comeback interviews.",
+      "3 year career gap after baby. This helped me frame it positively. HR suggestions were perfect for comeback meetings.",
     image: "https://randomuser.me/api/portraits/women/65.jpg",
   },
   // REVIEW 10
@@ -134,7 +134,7 @@ const testimonials = [
     company: "Now at Goldman Sachs",
     rating: 5.0,
     quote:
-      "Finance interviews mix math and behavioral. Transcription let me focus on calculations. Got into GS Bangalore.",
+      "Finance meetings mix math and behavioral. Transcription let me focus on calculations. Got into GS Bangalore.",
     image: "https://randomuser.me/api/portraits/women/42.jpg",
   },
   // REVIEW 14
@@ -205,7 +205,7 @@ export function Testimonials() {
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <SectionHeader
             title="Loved by Thousands of Job Seekers"
-            subtitle="See what our users say about their interview experience"
+            subtitle="See what our users say about their meeting experience"
           />
 
           <div className="flex flex-col items-center">

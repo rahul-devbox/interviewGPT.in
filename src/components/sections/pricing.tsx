@@ -26,7 +26,7 @@ export function Pricing() {
       <Container>
         <SectionHeader
           title="Simple, Transparent Pricing"
-          subtitle="Choose the perfect plan for your interview preparation journey."
+          subtitle="Choose the perfect plan for your meeting preparation journey."
         />
 
         {/* Toggle Switch */}
@@ -57,7 +57,7 @@ export function Pricing() {
                 billingCycle === "monthly" ? "text-white" : "text-muted-foreground"
               )}
             >
-              Monthly
+              Flex Pass
             </button>
           </div>
 
@@ -97,7 +97,7 @@ export function Pricing() {
                       <ul className="space-y-3 text-sm">
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> 7 Minutes of
-                          Interview
+                          Meeting
                         </li>
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> Medium Level
@@ -127,7 +127,7 @@ export function Pricing() {
                     <CardHeader>
                       <CardTitle className="text-xl">Standard</CardTitle>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">₹999</span>
+                        <span className="text-4xl font-bold">₹1,499</span>
                         <span className="text-muted-foreground ml-2">/ 1 hour</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-2">
@@ -138,7 +138,7 @@ export function Pricing() {
                       <ul className="space-y-3 text-sm">
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> 1 Hour of
-                          Interview
+                          Meeting
                         </li>
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> Medium Level
@@ -178,7 +178,7 @@ export function Pricing() {
                     <CardHeader>
                       <CardTitle className="text-xl">Premium</CardTitle>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">₹1,699</span>
+                        <span className="text-4xl font-bold">₹2,499</span>
                         <span className="text-muted-foreground ml-2">/ 2 hours</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-2">
@@ -189,7 +189,7 @@ export function Pricing() {
                       <ul className="space-y-3 text-sm font-medium">
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-primary shrink-0" /> 2 Hours of
-                          Interview
+                          Meeting
                         </li>
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-primary shrink-0" /> Hard Level DSA
@@ -239,7 +239,7 @@ export function Pricing() {
             ) : (
               <>
                 {/* Enterprise */}
-                <div className="h-full md:col-start-1">
+                <div className="h-full">
                   <Card className={cn(cardBaseClasses)}>
                     <CardHeader>
                       <CardTitle className="text-xl">Enterprise</CardTitle>
@@ -270,15 +270,59 @@ export function Pricing() {
                       </ul>
                     </CardContent>
                     <CardFooter>
-                      <Button variant="outline" className="w-full" size="lg">
-                        Contact Sales
+                      <Button variant="outline" className="w-full" size="lg" asChild>
+                        <Link href="/contact-sales">Contact Sales</Link>
                       </Button>
                     </CardFooter>
                   </Card>
                 </div>
 
-                {/* Unlimited Monthly Plan */}
-                <div className="h-full md:col-start-2">
+                {/* Base Value Pack */}
+                <div className="h-full">
+                  <Card className={cn(cardBaseClasses)}>
+                    <CardHeader>
+                      <CardTitle className="text-xl">Best Value Pack</CardTitle>
+                      <div className="mt-4">
+                        <span className="text-4xl font-bold">₹6,999</span>
+                        <span className="text-muted-foreground ml-2">/ 5 hours</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Great savings for extended prep
+                      </p>
+                    </CardHeader>
+                    <CardContent className="flex-1">
+                      <ul className="space-y-3 text-sm">
+                        <li className="flex items-center">
+                          <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> 5 Hours of
+                          Meeting
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> Hard Level
+                          DSA Solving
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> Behavioral
+                          Round
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> System Design
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="mr-2 h-4 w-4 text-green-500 shrink-0" /> Credits Never
+                          Expire
+                        </li>
+                      </ul>
+                    </CardContent>
+                    <CardFooter>
+                      <Button className={standardButtonClasses} size="lg" asChild>
+                        <Link href="/login?package=value-pack">Get Value Pack</Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+
+                {/* Flex Pass (Unlimited) */}
+                <div className="h-full">
                   <Card
                     className={cn(
                       cardBaseClasses,
@@ -291,9 +335,9 @@ export function Pricing() {
                       </Badge>
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-xl">Monthly Unlimited</CardTitle>
+                      <CardTitle className="text-xl">Flex Pass</CardTitle>
                       <div className="mt-4">
-                        <span className="text-4xl font-bold">₹9,999</span>
+                        <span className="text-4xl font-bold">₹14,999</span>
                         <span className="text-muted-foreground ml-2">/ month</span>
                       </div>
                       <p className="text-sm text-muted-foreground mt-2">
@@ -304,7 +348,7 @@ export function Pricing() {
                       <ul className="space-y-3 text-sm font-medium">
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-primary shrink-0" /> Unlimited
-                          Interview Time
+                          Meeting Time
                         </li>
                         <li className="flex items-center">
                           <Check className="mr-2 h-4 w-4 text-primary shrink-0" /> Hard Level DSA
@@ -344,7 +388,7 @@ export function Pricing() {
                           }}
                         />
                         <div className="relative z-10">
-                          <Link href="/login?package=monthly">Get Monthly Access</Link>
+                          <Link href="/login?package=monthly">Get Flex Pass</Link>
                         </div>
                       </Button>
                     </CardFooter>
